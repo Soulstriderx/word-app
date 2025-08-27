@@ -6,16 +6,56 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
+import com.fwrdgrp.wordapp.MainActivity
 import com.fwrdgrp.wordapp.R
+import com.fwrdgrp.wordapp.adapter.WordsAdapter
+import com.fwrdgrp.wordapp.data.models.Word
+import com.fwrdgrp.wordapp.data.repo.WordsRepo
+import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
-    class HomeFragment : Fragment() {
+class HomeFragment : Fragment() {
+    private lateinit var binding: FragmentHomeBinding
+    private val viewModel: HomeViewModel by viewModels()
+    private lateinit var adapter: WordsAdapter
+    private val repo = WordsRepo.Companion.getInstance()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding =  FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        private val viewModel: HomeViewModel by viewModels()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAdapter()
 
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View {
-            return inflater.inflate(R.layout.fragment_home, container, false)
+        lifecycleScope.launch {
+            viewModel.words.collect {
+                adapter.setWords(it)
+                binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
+            }
+        }
+        binding.fabAdd.setOnClickListener{
+            (requireActivity() as MainActivity).navigate(AddWordFragment())
+        }
+        setFragmentResultListener("manage_item"){ _, result ->
+            val shouldRefresh = result.getBoolean("refresh")
+            if(shouldRefresh)viewModel.refresh()
         }
     }
+
+    fun setupAdapter() {
+        adapter = WordsAdapter(
+            emptyList(),
+
+            onPress = { word ->
+
+            }
+        )
+    }
+
+}
