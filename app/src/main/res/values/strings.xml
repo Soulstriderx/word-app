@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Word App</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam euismod risus et urna tincidunt imperdiet. Nunc ultrices sapien ante, sed tempus arcu tristique in. Maecenas tempor pharetra enim, non maximus libero efficitur sed. Quisque et ultrices mi, at venenatis justo. Aliquam erat volutpat. Nulla bibendum, velit ac consequat mollis, urna leo tempus dui, et gravida diam odio vitae metus. Sed placerat scelerisque felis, ut dapibus massa aliquam a. Sed neque felis, molestie at lectus et, dignissim semper massa. Vivamus dignissim nunc ut ullamcorper pellentesque. Fusce euismod nibh tortor, vitae congue enim malesuada sed. Praesent interdum tempor viverra. Phasellus quam nisi, ultricies nec tellus non, rhoncus eleifend tortor.</string>
 </resources>
