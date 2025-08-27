@@ -10,7 +10,6 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fwrdgrp.wordapp.adapter.WordsAdapter
-import com.fwrdgrp.wordapp.data.repo.WordsRepo
 import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
@@ -57,5 +56,7 @@ class HomeFragment : Fragment() {
         binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(this.context)
     }
+
+
 
 }
