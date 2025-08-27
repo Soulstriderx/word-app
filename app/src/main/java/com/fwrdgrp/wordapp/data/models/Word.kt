@@ -7,10 +7,7 @@ data class Word(
     val details: String? = null,
     val status: Status = Status.INCOMPLETE,
     val id: Int? = null
-
-
 )
-
 enum class Status{
     COMPLETE, INCOMPLETE
 }
