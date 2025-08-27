@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
-import com.fwrdgrp.wordapp.MainActivity
-import com.fwrdgrp.wordapp.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.fwrdgrp.wordapp.adapter.WordsAdapter
-import com.fwrdgrp.wordapp.data.models.Word
 import com.fwrdgrp.wordapp.data.repo.WordsRepo
 import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
@@ -40,7 +38,7 @@ class HomeFragment : Fragment() {
             }
         }
         binding.fabAdd.setOnClickListener{
-            (requireActivity() as MainActivity).navigate(AddWordFragment())
+
         }
         setFragmentResultListener("manage_item"){ _, result ->
             val shouldRefresh = result.getBoolean("refresh")
@@ -56,6 +54,9 @@ class HomeFragment : Fragment() {
 
             }
         )
+
+        binding.rvWords.adapter = adapter
+        binding.rvWords.layoutManager = LinearLayoutManager(this.context)
     }
 
 }
