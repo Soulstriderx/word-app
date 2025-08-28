@@ -11,6 +11,16 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
 
+        <action
+            android:id="@+id/action_home_to_wordDetail"
+            app:destination="@id/wordDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordDetailFragment"
+        android:name="com.fwrdgrp.wordapp.ui.general.WordDetailFragment"
+        android:label="fragment_word_detail"
+        tools:layout="@layout/fragment_word_detail" >
+        <argument android:name="word_id" app:argType="integer"/>
     </fragment>
 
 </navigation>
