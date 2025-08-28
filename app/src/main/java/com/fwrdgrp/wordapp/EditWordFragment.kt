@@ -19,13 +19,17 @@ class EditWordFragment(
         binding.run {
             etTitle.setText(word.title)
             etMeaning.setText(word.meaning)
+            etSynonym.setText(word.synonym)
+            etDetails.setText(word.details)
 
             btnSubmit.setOnClickListener {
                 repo.updateNote(
                     wordId,
                     word.copy(
                         title = etTitle.text.toString(),
-                        desc = etMeaning.text.toString()
+                        desc = etMeaning.text.toString(),
+                        synonym = etSynonym.text.toString(),
+                        details = etDetails.text.toString()
                     )
                 )
                 setFragmentResult(
@@ -34,7 +38,6 @@ class EditWordFragment(
                         putBoolean("refresh", true)
                     }
                 )
-                (requireActivity() as MainActivity).navigateBack()
             }
         }
     }

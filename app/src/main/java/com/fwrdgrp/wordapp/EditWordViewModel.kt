@@ -22,8 +22,6 @@ class EditWordViewModel(
         try {
             require(title.isNotBlank()) { "Title cannot be blank" }
             require(meaning.isNotBlank()) { "Meaning cannot be blank" }
-            require(synonym.isNotBlank()) { "Synonym cannot be blank" }
-            require(details.isNotBlank()) { "Details cannot be blank" }
             val word = Word(title = title, meaning = meaning, synonym = synonym, details = details)
             repo.add(word)
             viewModelScope.launch {
