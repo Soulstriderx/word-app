@@ -16,6 +16,8 @@ class AddWordFragment : BaseManageWordFragment() {
             viewModel.addWord(
                 binding.etTitle.text.toString(),
                 binding.etMeaning.text.toString(),
+                binding.etSynonymm.text.toString(),
+                binding.etDetails.text.toString()
             )
         }
 
