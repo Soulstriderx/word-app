@@ -17,18 +17,10 @@ class WordsAdapter(
 
     override fun onBindViewHolder(holder: WordsAdapter.WordViewHolder, position: Int) {
         val word = words[position]
-        holder.binding.tvTitle.text = word.title
-        holder.binding.tvMeaning.text = word.meaning
-        holder.binding.tvSynonym.text = word.synonym
-        holder.binding.tvDetails.text = word.details
-//        holder.binding.tvStatus.text = word.status
 
         holder.binding.run {
             tvTitle.text = word.title
             tvMeaning.text = word.meaning
-            tvSynonym.text = word.synonym
-            tvDetails.text = word.details
-//            tvStatus.text = word.status
 
             cvWord.setOnClickListener {
                 onPress(word)
