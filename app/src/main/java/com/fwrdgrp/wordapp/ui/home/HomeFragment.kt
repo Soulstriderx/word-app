@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fwrdgrp.wordapp.adapter.WordsAdapter
 import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
@@ -47,10 +48,8 @@ class HomeFragment : Fragment() {
     fun setupAdapter() {
         adapter = WordsAdapter(
             emptyList(),
-
-            onPress = { word ->
-
-            }
+            onPress = { val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
+                findNavController().navigate(action) }
         )
 
         binding.rvWords.adapter = adapter

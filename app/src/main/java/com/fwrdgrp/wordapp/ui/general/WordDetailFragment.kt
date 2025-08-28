@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.fwrdgrp.wordapp.R
 import com.fwrdgrp.wordapp.data.repo.WordsRepo
 import com.fwrdgrp.wordapp.databinding.FragmentWordDetailBinding
 
@@ -15,7 +15,7 @@ class WordDetailFragment : Fragment() {
 
     private val repo: WordsRepo = WordsRepo.getInstance()
     private lateinit var binding: FragmentWordDetailBinding
-//    private val args: WordDetailFragmentArgs by navArgs()
+    private val args: WordDetailFragmentArgs by navArgs()
 
 
     override fun onCreateView(
@@ -28,12 +28,14 @@ class WordDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val word = repo.getWordById(args.wordId)
+        val word = repo.getWordById(args.wordId)
+
         binding.run {
-//            tvTitle.setText(word.title)
-//            tvMeaning.setText(word.meaning)
-//            tvSynonym.setText(word.synonym)
-//            tvDetails.setText(word.details)
+            mtDetails.setNavigationOnClickListener { findNavController().popBackStack() }
+            tvTitle.text = word?.title
+            tvMeaning.text = word?.meaning
+            tvSynonym.text = word?.synonym ?: "There are currently no Synonyms for this word"
+            tvDetails.text = word?.details ?: "There are currently no details available"
         }
     }
 }
