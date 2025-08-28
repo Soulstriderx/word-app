@@ -18,11 +18,11 @@ class EditWordViewModel(
     private val _error = MutableSharedFlow<String>()
     val error: SharedFlow<String> = _error
 
-    fun editWord(title: String, meaning: String, synonym: String, details: String ) {
+    fun editWord(title: String, meaning: String) {
         try {
             require(title.isNotBlank()) { "Title cannot be blank" }
             require(meaning.isNotBlank()) { "Meaning cannot be blank" }
-            val word = Word(title = title, meaning = meaning, synonym = synonym, details = details)
+            val word = Word(title = title, meaning = meaning)
             repo.add(word)
             viewModelScope.launch {
                 _finish.emit(Unit)
