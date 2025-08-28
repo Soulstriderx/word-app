@@ -22,5 +22,10 @@
         tools:layout="@layout/fragment_word_detail" >
         <argument android:name="word_id" app:argType="integer"/>
     </fragment>
+    <fragment
+        android:id="@+id/completeWordFragment"
+        android:name="com.fwrdgrp.wordapp.ui.home.CompleteWordFragment"
+        android:label="CompleteWordFragment"
+        tools:layout="@layout/fragment_home"/>
 
 </navigation>
