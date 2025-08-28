@@ -2,7 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/newWordFragment"
         android:title="New Word"/>
-
     <item android:id="@+id/completedWordFragment"
         android:title="Complete Word" />
 </menu>
