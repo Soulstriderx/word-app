@@ -1,26 +1,15 @@
 package com.fwrdgrp.wordapp.ui.manage
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.fwrdgrp.wordapp.data.models.Word
-import com.fwrdgrp.wordapp.data.repo.WordsRepo
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 
-class AddWordViewModel(
-    private val repo: WordsRepo = WordsRepo.getInstance()
-) : ViewModel() {
-    private val _finish = MutableSharedFlow<Unit>()
-    val finish: SharedFlow<Unit> = _finish
-    private val _error = MutableSharedFlow<String>()
-    val error: SharedFlow<String> = _error
-    fun addWord(title: String, meaning: String, synonym: String, details: String) {
-        try {
-            require(title.isNotBlank()) { "Title cannot be blank" }
-            require(meaning.isNotBlank()) { "Meaning cannot be blank" }
+class AddWordViewModel: BaseManageViewModel() {
 
-            val word = Word(title = title, meaning = meaning, synonym = synonym, details = details)
+    override fun submit(word: Word) {
+        try {
+            require(word.title.isNotBlank()) { "Title cannot be blank" }
+            require(word.meaning.isNotBlank()) { "Meaning cannot be blank" }
             repo.add(word)
             viewModelScope.launch {
                 _finish.emit(Unit)
