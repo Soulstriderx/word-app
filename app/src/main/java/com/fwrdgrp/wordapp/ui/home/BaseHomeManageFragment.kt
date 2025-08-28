@@ -1,0 +1,58 @@
+package com.fwrdgrp.wordapp.ui.home
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.fwrdgrp.wordapp.adapter.WordsAdapter
+import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
+
+abstract class BaseHomeManageFragment : Fragment() {
+    protected lateinit var binding: FragmentHomeBinding
+    protected lateinit var adapter: WordsAdapter
+    protected abstract val viewModel: BaseHomeViewModel
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding =  FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupAdapter()
+
+        lifecycleScope.launch {
+            viewModel.words.collect {
+                adapter.setWords(it)
+                binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
+            }
+        }
+        binding.fabAdd.setOnClickListener{
+
+        }
+        setFragmentResultListener("manage_item"){ _, result ->
+            val shouldRefresh = result.getBoolean("refresh")
+            if(shouldRefresh)viewModel.refresh()
+        }
+    }
+
+    fun setupAdapter() {
+        adapter = WordsAdapter(
+            emptyList(),
+            onPress = { val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
+                findNavController().navigate(action) }
+        )
+
+        binding.rvWords.adapter = adapter
+        binding.rvWords.layoutManager = LinearLayoutManager(this.context)
+    }
+}

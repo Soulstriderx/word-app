@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/newWordFragment"
-        android:title="New Word"/>
-    <item android:id="@+id/completedWordFragment"
-        android:title="Complete Word" />
+    <item android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="New Words"/>
+    <item android:id="@+id/completeWordFragment"
+        android:icon="@drawable/ic_checkmark"
+        android:title="Completed Words" />
 </menu>
