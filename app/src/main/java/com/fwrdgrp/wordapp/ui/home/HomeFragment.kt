@@ -52,7 +52,3 @@ class HomeFragment : Fragment() {
         binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(this.context)
     }
-
-
-
-}
