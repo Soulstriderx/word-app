@@ -1,6 +1,6 @@
 package com.fwrdgrp.wordapp.ui.home
 
-import com.fwrdgrp.wordapp.data.models.Status
+import com.fwrdgrp.wordapp.data.enums.Status
 import kotlinx.coroutines.flow.update
 
 class CompleteWordViewModel : BaseHomeViewModel() {
