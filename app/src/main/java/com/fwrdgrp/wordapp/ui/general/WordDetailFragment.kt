@@ -19,7 +19,7 @@ import com.fwrdgrp.wordapp.data.repo.WordsRepo
 import com.fwrdgrp.wordapp.databinding.FragmentWordDetailBinding
 import com.google.android.material.button.MaterialButton
 import androidx.core.graphics.drawable.toDrawable
-import com.fwrdgrp.wordapp.data.models.Status
+import com.fwrdgrp.wordapp.data.enums.Status
 import com.fwrdgrp.wordapp.data.models.Word
 
 
