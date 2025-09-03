@@ -17,10 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="16dp"
-            android:paddingVertical="16dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="8dp">
+            android:elevation="@dimen/xl"
+            android:paddingVertical="@dimen/xl"
+            android:paddingStart="@dimen/xl"
+            android:paddingEnd="@dimen/xs">
 
             <EditText
                 android:id="@+id/etSearch"
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="4dp"
+                android:layout_marginHorizontal="@dimen/xxs"
                 android:src="@drawable/ic_filter" />
         </LinearLayout>
 
@@ -46,8 +46,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:clipToPadding="false"
-            android:paddingTop="4dp"
-            android:paddingBottom="75dp" />
+            android:paddingTop="@dimen/xxxs"
+            android:paddingBottom="@dimen/recycler_bot_pad" />
 
         <LinearLayout
             android:id="@+id/llEmpty"
@@ -57,8 +57,8 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="@dimen/empty_ic_size"
+                android:layout_height="@dimen/empty_ic_size"
                 android:src="@drawable/ic_file" />
 
             <TextView
@@ -76,8 +76,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="@dimen/xl"
+        android:layout_marginBottom="@dimen/xl"
         android:text="@string/add_word"
         app:icon="@drawable/ic_add" />
 
