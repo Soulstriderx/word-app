@@ -56,10 +56,13 @@ class WordDetailFragment : Fragment() {
             tvMeaning.text = word.meaning
             tvSynonym.text = word.synonym ?: "There are currently no Synonyms for this word"
             tvDetails.text = word.details ?: "There are currently no details available"
-            mbDone.setOnClickListener {
-                val dialog = createCompletedDialog()
-                dialog.show()
-            }
+        }
+        setOnClickListeners()
+    }
+
+    fun setOnClickListeners() {
+        binding.run {
+            setCompletedButtonListener()
             mbDelete.setOnClickListener {
                 val dialog = createDialog(args.wordId)
                 dialog.show()
@@ -67,6 +70,24 @@ class WordDetailFragment : Fragment() {
             mbUpdate.setOnClickListener {
                 val action = WordDetailFragmentDirections.actionWordDetailToEditWord(word.id!!)
                 findNavController().navigate(action)
+            }
+        }
+    }
+
+    fun setCompletedButtonListener() {
+        binding.run {
+            if (word.status == Status.COMPLETE) {
+                mbDone.text = "Undone"
+                mbDone.setOnClickListener {
+                    val dialog = createUncompletedDialog()
+                    dialog.show()
+                }
+            } else {
+                mbDone.text = "Done"
+                mbDone.setOnClickListener {
+                    val dialog = createCompletedDialog()
+                    dialog.show()
+                }
             }
         }
     }
@@ -79,6 +100,7 @@ class WordDetailFragment : Fragment() {
             tvMeaning.text = word.meaning
             tvSynonym.text = word.synonym ?: "There are currently no Synonyms for this word"
             tvDetails.text = word.details ?: "There are currently no details available"
+            setCompletedButtonListener()
         }
     }
 
@@ -88,7 +110,13 @@ class WordDetailFragment : Fragment() {
         setFragmentResult("manage_word", Bundle())
     }
 
-    fun createCompletedDialog(): Dialog{
+    fun setBackStatus() {
+        repo.updateWord(word.id!!, word.copy(status = Status.INCOMPLETE))
+        getWord()
+        setFragmentResult("manage_word", Bundle())
+    }
+
+    fun createCompletedDialog(): Dialog {
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.confirmation_dialog)
         dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
@@ -100,13 +128,25 @@ class WordDetailFragment : Fragment() {
         val mbYes = dialog.findViewById<MaterialButton>(R.id.mbDelete)
         mbYes.text = "Yes"
         mbYes.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
-        mbYes.setOnClickListener {
-            setStatus()
-            dialog.dismiss()
-        }
-        mbNo.setOnClickListener {
-            dialog.dismiss()
-        }
+        mbYes.setOnClickListener { setStatus(); dialog.dismiss() }
+        mbNo.setOnClickListener { dialog.dismiss() }
+        return dialog
+    }
+
+    fun createUncompletedDialog(): Dialog {
+        val dialog = Dialog(requireContext())
+        dialog.setContentView(R.layout.confirmation_dialog)
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        val tvTitle = dialog.findViewById<TextView>(R.id.tvConfirm)
+        tvTitle.text = "Do you want to move the word back to new word list?"
+        val mbNo = dialog.findViewById<MaterialButton>(R.id.mbCancel)
+        mbNo.text = "No"
+        mbNo.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.teal))
+        val mbYes = dialog.findViewById<MaterialButton>(R.id.mbDelete)
+        mbYes.text = "Yes"
+        mbYes.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
+        mbYes.setOnClickListener { setBackStatus(); dialog.dismiss() }
+        mbNo.setOnClickListener { dialog.dismiss() }
         return dialog
     }
 
