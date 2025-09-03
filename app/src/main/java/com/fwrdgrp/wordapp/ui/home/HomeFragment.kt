@@ -15,6 +15,7 @@ class HomeFragment : BaseHomeManageFragment() {
             val action = HomeFragmentDirections.actionHomeToAddWord()
             findNavController().navigate(action)
         }
+        binding.tvEmpty.text = "You have no New Words"
     }
 
     override fun getWordDetailAction(wordId: Int): NavDirections {

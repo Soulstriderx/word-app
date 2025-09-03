@@ -14,6 +14,7 @@ class CompleteWordFragment : BaseHomeManageFragment() {
             val action = CompleteWordFragmentDirections.actionCompleteWordToAddWord()
             findNavController().navigate(action)
         }
+        binding.tvEmpty.text = "You have no Completed Words"
     }
 
     override fun getWordDetailAction(wordId: Int): NavDirections {
