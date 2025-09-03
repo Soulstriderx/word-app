@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fwrdgrp.wordapp.adapter.WordsAdapter
@@ -51,14 +52,20 @@ abstract class BaseHomeManageFragment : Fragment() {
         adapter = WordsAdapter(
             emptyList(),
             onPress = {
-                val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
-                findNavController().navigate(action)
+                navigateToDetails(it.id!!)
             }
         )
 
         binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(this.context)
     }
+
+    protected fun navigateToDetails(wordId: Int) {
+        val action = getWordDetailAction(wordId)
+        findNavController().navigate(action)
+    }
+
+    protected abstract fun getWordDetailAction(wordId: Int): NavDirections
 
     fun setSort(sortBy: SortBy, orderBy: SortOrder) {
         currentSort = sortBy
@@ -78,10 +85,6 @@ abstract class BaseHomeManageFragment : Fragment() {
     }
 
     fun setNavigation() {
-        binding.fabAdd.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToAddWord()
-            findNavController().navigate(action)
-        }
         binding.ivSort.setOnClickListener {
             val dialog = SortDialogFragment(currentSort, currentOrder) { sortBy, orderBy ->
                 setSort(sortBy, orderBy)
