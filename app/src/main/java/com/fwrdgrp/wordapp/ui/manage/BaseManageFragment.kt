@@ -29,17 +29,18 @@ abstract class BaseManageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         lifecycleScope.launch {
             viewModel.finish.collect {
                 navigateBack()
             }
         }
-
         lifecycleScope.launch {
             viewModel.error.collect {
                 showError(it)
             }
+        }
+        binding.mtManage.setNavigationOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
