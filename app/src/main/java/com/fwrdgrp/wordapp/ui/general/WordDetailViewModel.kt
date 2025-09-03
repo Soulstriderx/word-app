@@ -1,6 +1,5 @@
 package com.fwrdgrp.wordapp.ui.general
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.fwrdgrp.wordapp.data.enums.Status
 import com.fwrdgrp.wordapp.data.models.Word

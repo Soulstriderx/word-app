@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fwrdgrp.wordapp.adapter.WordsAdapter
 import com.fwrdgrp.wordapp.data.enums.SortBy
 import com.fwrdgrp.wordapp.data.enums.SortOrder
+import com.fwrdgrp.wordapp.data.util.Constant
 import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
 import com.fwrdgrp.wordapp.ui.manage.SortDialogFragment
 import kotlinx.coroutines.launch
@@ -45,7 +46,7 @@ abstract class BaseHomeManageFragment : Fragment() {
                 binding.llEmpty.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             }
         }
-        setFragmentResultListener("manage_word") { _, _ -> viewModel.refresh() }
+        setFragmentResultListener(Constant.MANAGE_WORD) { _, _ -> viewModel.refresh() }
     }
 
     fun setupAdapter() {
@@ -89,7 +90,7 @@ abstract class BaseHomeManageFragment : Fragment() {
             val dialog = SortDialogFragment(currentSort, currentOrder) { sortBy, orderBy ->
                 setSort(sortBy, orderBy)
             }
-            dialog.show(parentFragmentManager, "SortingDialog")
+            dialog.show(parentFragmentManager, Constant.SORTING_DIALOG)
         }
     }
 }

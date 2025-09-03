@@ -3,6 +3,7 @@ package com.fwrdgrp.wordapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.fwrdgrp.wordapp.R
 import com.fwrdgrp.wordapp.data.models.Word
 import com.fwrdgrp.wordapp.databinding.LayoutWordItemBinding
 
@@ -22,7 +23,7 @@ class WordsAdapter(
 
         holder.binding.run {
             tvTitle.text = word.title
-            tvMeaning.text = word.meaning
+            tvMeaning.text = root.context.getString(R.string.definition, word.meaning)
 
             cvWord.setOnClickListener {
                 onPress(word)

@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             android:maxLines="1"
             android:ellipsize="end"
-            android:hint="lorem" />
+            android:hint="@string/lorem" />
 
         <TextView
             android:id="@+id/tvMeaning"

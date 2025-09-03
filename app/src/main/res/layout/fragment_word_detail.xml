@@ -11,14 +11,14 @@
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="2dp" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/mtDetails"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="Word Details"
+        app:title="@string/detail_title"
         app:titleCentered="true" />
 
     <com.google.android.material.divider.MaterialDivider
@@ -38,7 +38,7 @@
             android:insetTop="20dp"
             android:insetBottom="20dp"
             android:paddingHorizontal="36dp"
-            android:text="Done"
+            android:text="@string/done"
             app:backgroundTint="@color/teal"
             app:cornerRadius="8dp" />
 
@@ -50,7 +50,7 @@
             android:insetTop="20dp"
             android:insetBottom="20dp"
             android:paddingHorizontal="36dp"
-            android:text="Update"
+            android:text="@string/update"
             app:backgroundTint="@color/teal"
             app:cornerRadius="8dp" />
 
@@ -61,7 +61,7 @@
             android:insetTop="20dp"
             android:insetBottom="20dp"
             android:paddingHorizontal="36dp"
-            android:text="Delete"
+            android:text="@string/delete"
             app:backgroundTint="@color/red"
             app:cornerRadius="8dp" />
     </LinearLayout>
@@ -78,14 +78,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Title" />
+            android:hint="@string/title" />
 
         <TextView
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:hint="Meaning" />
+            android:hint="@string/meaning" />
 
         <TextView
             android:id="@+id/tvMeaning"
@@ -93,14 +93,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Meaning of word..." />
+            android:hint="@string/meaning_of_word" />
 
         <TextView
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:hint="Synonym" />
+            android:hint="@string/synonym" />
 
         <TextView
             android:id="@+id/tvSynonym"
@@ -108,14 +108,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Word Synonyms..." />
+            android:hint="@string/word_synonyms" />
 
         <TextView
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:hint="Details" />
+            android:hint="@string/details" />
 
         <TextView
             android:id="@+id/tvDetails"
@@ -123,7 +123,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Details/Usage of Word..." />
+            android:hint="@string/details_usage_of_word" />
 
     </LinearLayout>
 

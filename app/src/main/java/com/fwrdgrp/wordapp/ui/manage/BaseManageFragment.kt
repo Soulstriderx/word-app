@@ -10,6 +10,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.fwrdgrp.wordapp.R
+import com.fwrdgrp.wordapp.data.util.Constant
 import com.fwrdgrp.wordapp.databinding.ManageItemLayoutBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -36,7 +37,12 @@ abstract class BaseManageFragment : Fragment() {
         }
         lifecycleScope.launch {
             viewModel.error.collect {
-                showError(it)
+                val message = when (it) {
+                    "NO_TITLE" -> getString(R.string.no_title)
+                    "NO_MEANING" -> getString(R.string.no_meaning)
+                    else -> getString(R.string.error)
+                }
+                showError(message)
             }
         }
         binding.mtManage.setNavigationOnClickListener {
@@ -50,8 +56,8 @@ abstract class BaseManageFragment : Fragment() {
     }
 
     fun navigateBack() {
-        setFragmentResult("manage_word", Bundle())
-        setFragmentResult("manage_edit_word", Bundle())
+        setFragmentResult(Constant.MANAGE_WORD, Bundle())
+        setFragmentResult(Constant.MANAGE_EDIT_WORD, Bundle())
         findNavController().popBackStack()
     }
 }

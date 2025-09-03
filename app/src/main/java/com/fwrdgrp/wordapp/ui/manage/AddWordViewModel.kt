@@ -8,8 +8,8 @@ class AddWordViewModel: BaseManageViewModel() {
 
     override fun submit(word: Word) {
         try {
-            require(word.title.isNotBlank()) { "Title cannot be blank" }
-            require(word.meaning.isNotBlank()) { "Meaning cannot be blank" }
+            require(word.title.isNotBlank()) { "NO_TITLE" }
+            require(word.meaning.isNotBlank()) { "NO_MEANING" }
             repo.add(word)
             viewModelScope.launch {
                 _finish.emit(Unit)

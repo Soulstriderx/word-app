@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import com.fwrdgrp.wordapp.R
 import com.fwrdgrp.wordapp.data.models.Word
 import com.fwrdgrp.wordapp.ui.general.WordDetailFragmentArgs
 import kotlin.getValue
@@ -32,14 +33,14 @@ class EditWordFragment: BaseManageFragment() {
         }
     }
 
-    fun setText(word: Word) {
+    fun setText(word: Word?) {
         binding.run {
-            mbSubmit.text = "Update"
-            mtManage.title = "Update Word"
-            etTitle.setText(word.title)
-            etMeaning.setText(word.meaning)
-            etSynonyms.setText(word.synonym)
-            etDetails.setText(word.details)
+            mbSubmit.text = getString(R.string.update)
+            mtManage.title = getString(R.string.update_word)
+            etTitle.setText(word?.title)
+            etMeaning.setText(word?.meaning)
+            etSynonyms.setText(word?.synonym)
+            etDetails.setText(word?.details)
         }
     }
 }

@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Title"/>
+            android:text="@string/title"/>
 
         <EditText
             android:id="@+id/etTitle"
@@ -35,13 +35,13 @@
             android:layout_marginTop="15dp"
 
             android:background="@drawable/edit_text_bg"
-            android:hint="Title"/>
+            android:hint="@string/title"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Meaning"/>
+            android:text="@string/meaning"/>
 
         <EditText
             android:id="@+id/etMeaning"
@@ -49,13 +49,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/edit_text_bg"
-            android:hint="Meaning"/>
+            android:hint="@string/meaning"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Synonyms"/>
+            android:text="@string/synonym"/>
 
         <EditText
             android:id="@+id/etSynonyms"
@@ -63,13 +63,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/edit_text_bg"
-            android:hint="Synonyms"/>
+            android:hint="@string/synonym"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:text="Details"/>
+            android:text="@string/details"/>
 
         <EditText
             android:id="@+id/etDetails"
@@ -82,7 +82,7 @@
             android:background="@drawable/edit_text_bg"
             android:overScrollMode="always"
             android:scrollbars="vertical"
-            android:hint="Details"/>
+            android:hint="@string/details"/>
 
     </LinearLayout>
 
@@ -95,7 +95,6 @@
         android:id="@+id/mbSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add"
         android:layout_marginHorizontal="35dp"/>
     <Space
         android:layout_width="0dp"
