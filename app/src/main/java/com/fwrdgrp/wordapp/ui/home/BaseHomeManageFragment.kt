@@ -1,11 +1,10 @@
 package com.fwrdgrp.wordapp.ui.home
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -14,10 +13,11 @@ import com.fwrdgrp.wordapp.adapter.WordsAdapter
 import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
 
-class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
-    private lateinit var adapter: WordsAdapter
+abstract class BaseHomeManageFragment : Fragment() {
+    protected lateinit var binding: FragmentHomeBinding
+    protected lateinit var adapter: WordsAdapter
+    protected abstract val viewModel: BaseHomeViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,10 +37,12 @@ class HomeFragment : Fragment() {
             }
         }
         binding.fabAdd.setOnClickListener{
-            val action = HomeFragmentDirections.actionHomeToAddWord()
-            findNavController().navigate(action)
+
         }
-        setFragmentResultListener("manage_word"){ _, _ -> viewModel.refresh() }
+        setFragmentResultListener("manage_item"){ _, result ->
+            val shouldRefresh = result.getBoolean("refresh")
+            if(shouldRefresh)viewModel.refresh()
+        }
     }
 
     fun setupAdapter() {
@@ -49,6 +51,8 @@ class HomeFragment : Fragment() {
             onPress = { val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
                 findNavController().navigate(action) }
         )
+
         binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(this.context)
     }
+}

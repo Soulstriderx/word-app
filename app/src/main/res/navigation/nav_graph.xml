@@ -10,7 +10,6 @@
         android:name="com.fwrdgrp.wordapp.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
-
         <action
             android:id="@+id/action_home_to_wordDetail"
             app:enterAnim="@anim/from_right"
@@ -18,13 +17,52 @@
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right"
             app:destination="@id/wordDetailFragment" />
+        <action
+            android:id="@+id/action_home_to_addWord"
+            app:destination="@id/addWordFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/wordDetailFragment"
         android:name="com.fwrdgrp.wordapp.ui.general.WordDetailFragment"
         android:label="fragment_word_detail"
         tools:layout="@layout/fragment_word_detail" >
         <argument android:name="word_id" app:argType="integer"/>
+        <action
+            android:id="@+id/action_wordDetail_to_editWord"
+            app:destination="@id/editWordFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/completeWordFragment"
+        android:name="com.fwrdgrp.wordapp.ui.home.CompleteWordFragment"
+        android:label="CompleteWordFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_completeWord_to_wordDetail"
+            app:destination="@id/wordDetailFragment" />
+        <action
+            android:id="@+id/action_completeWord_to_addWord"
+            app:destination="@id/addWordFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addWordFragment"
+        android:name="com.fwrdgrp.wordapp.ui.manage.AddWordFragment"
+        android:label="AddWordFragment"
+        tools:layout="@layout/manage_item_layout"/>
+
+    <fragment
+        android:id="@+id/editWordFragment"
+        android:name="com.fwrdgrp.wordapp.ui.manage.EditWordFragment"
+        android:label="EditWordFragment"
+        tools:layout="@layout/manage_item_layout">
+        <argument android:name="word_id" app:argType="integer"/>
+    </fragment>
+    <fragment
+        android:id="@+id/completeWordFragment"
+        android:name="com.fwrdgrp.wordapp.ui.home.CompleteWordFragment"
+        android:label="CompleteWordFragment"
+        tools:layout="@layout/fragment_home"/>
 
 </navigation>
