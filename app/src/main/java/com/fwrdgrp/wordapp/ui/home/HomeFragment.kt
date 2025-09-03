@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =  FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,22 +33,25 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.words.collect {
                 adapter.setWords(it)
-                binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
+                binding.llEmpty.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             }
         }
-        binding.fabAdd.setOnClickListener{
+        binding.fabAdd.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToAddWord()
             findNavController().navigate(action)
         }
-        setFragmentResultListener("manage_word"){ _, _ -> viewModel.refresh() }
+        setFragmentResultListener("manage_word") { _, _ -> viewModel.refresh() }
     }
 
     fun setupAdapter() {
         adapter = WordsAdapter(
             emptyList(),
-            onPress = { val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
-                findNavController().navigate(action) }
+            onPress = {
+                val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
+                findNavController().navigate(action)
+            }
         )
         binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(this.context)
     }
+}
