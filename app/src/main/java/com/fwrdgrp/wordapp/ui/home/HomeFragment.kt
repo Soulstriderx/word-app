@@ -2,8 +2,6 @@ package com.fwrdgrp.wordapp.ui.home
 
 import androidx.fragment.app.viewModels
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,23 +11,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fwrdgrp.wordapp.adapter.WordsAdapter
-import com.fwrdgrp.wordapp.data.enums.SortBy
-import com.fwrdgrp.wordapp.data.enums.SortOrder
 import com.fwrdgrp.wordapp.databinding.FragmentHomeBinding
-import com.fwrdgrp.wordapp.ui.manage.SortDialogFragment
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter: WordsAdapter
-    private var currentSort = SortBy.DATE
-    private var currentOrder = SortOrder.ASCENDING
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding =  FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -40,7 +33,7 @@ class HomeFragment : Fragment() {
         lifecycleScope.launch {
             viewModel.words.collect {
                 adapter.setWords(it)
-                binding.llEmpty.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
+                binding.llEmpty.visibility = if(it.isEmpty()) View.VISIBLE else View.GONE
             }
         }
         binding.run {
@@ -69,10 +62,8 @@ class HomeFragment : Fragment() {
     fun setupAdapter() {
         adapter = WordsAdapter(
             emptyList(),
-            onPress = {
-                val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
-                findNavController().navigate(action)
-            }
+            onPress = { val action = HomeFragmentDirections.actionHomeToWordDetail(it.id!!)
+                findNavController().navigate(action) }
         )
         binding.rvWords.adapter = adapter
         binding.rvWords.layoutManager = LinearLayoutManager(this.context)
