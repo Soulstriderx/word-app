@@ -20,6 +20,7 @@ import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.viewModels
 import com.fwrdgrp.wordapp.data.enums.Status
 import com.fwrdgrp.wordapp.data.models.Word
+import com.fwrdgrp.wordapp.data.util.Constant
 
 
 class WordDetailFragment : Fragment() {
@@ -45,23 +46,24 @@ class WordDetailFragment : Fragment() {
         word = viewModel.getWord(args.wordId)
         setData(word)
 
-        setFragmentResultListener("manage_edit_word", { _, _ -> getWord() })
+        setFragmentResultListener(Constant.MANAGE_EDIT_WORD, { _, _ -> getWord() })
     }
 
-    fun setData(word: Word) {
+    fun setData(word: Word?) {
         binding.run {
             mtDetails.setNavigationOnClickListener { findNavController().popBackStack() }
-            tvTitle.text = word.title
-            tvMeaning.text = word.meaning
-            tvSynonym.text = word.synonym ?: "There are currently no Synonyms for this word"
-            tvDetails.text = word.details ?: "There are currently no details available"
+            tvTitle.text = word?.title
+            tvMeaning.text = word?.meaning
+            tvSynonym.text = word?.synonym ?: getString(R.string.no_synonym)
+            tvDetails.text = word?.details ?: getString(R.string.no_detail)
         }
         setOnClickListeners()
     }
 
     fun setOnClickListeners() {
         binding.run {
-            mbDone.text = if (word.status == Status.COMPLETE) "Undone" else "Done"
+            mbDone.text = if (word.status == Status.COMPLETE) getString(R.string.undone)
+            else getString(R.string.done)
             mbDone.setOnClickListener {
                 val dialog = createCompletedDialog()
                 dialog.show()
@@ -86,22 +88,25 @@ class WordDetailFragment : Fragment() {
     fun setStatus() {
         viewModel.changeStatus(word)
         getWord()
-        setFragmentResult("manage_word", Bundle())
+        setFragmentResult(Constant.MANAGE_WORD, Bundle())
     }
 
     fun createCompletedDialog(): Dialog {
         return Dialog(requireContext()).apply {
             setContentView(R.layout.confirmation_dialog)
             window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
-            findViewById<TextView>(R.id.tvConfirm).text = when (word.status) {
-                Status.INCOMPLETE -> "Do you want to move the word to Complete List?"
-                Status.COMPLETE -> "Do you want to move the word back to New Word List"
+            findViewById<TextView>(R.id.tvConfirm).text = if (word.status == Status.INCOMPLETE) {
+                getString(R.string.to_complete_question)
+            } else {
+                getString(R.string.to_new_question)
             }
-            findViewById<MaterialButton>(R.id.mbCancel).apply { text = "No"
+            findViewById<MaterialButton>(R.id.mbCancel).apply {
+                text = getString(R.string.no)
                 setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.teal))
                 setOnClickListener { dismiss() }
             }
-            findViewById<MaterialButton>(R.id.mbConfirm).apply { text = "Yes"
+            findViewById<MaterialButton>(R.id.mbConfirm).apply {
+                text = getString(R.string.yes)
                 setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.green))
                 setOnClickListener { setStatus(); dismiss() }
             }
@@ -115,7 +120,7 @@ class WordDetailFragment : Fragment() {
             findViewById<MaterialButton>(R.id.mbCancel).setOnClickListener { dismiss() }
             findViewById<MaterialButton>(R.id.mbConfirm).setOnClickListener {
                 viewModel.deleteWord(wordId)
-                setFragmentResult("manage_word", Bundle())
+                setFragmentResult(Constant.MANAGE_WORD, Bundle())
                 findNavController().popBackStack()
                 dismiss()
             }

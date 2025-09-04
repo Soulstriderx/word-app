@@ -16,8 +16,8 @@ class EditWordViewModel : BaseManageViewModel() {
 
     override fun submit(newWord: Word) {
         try {
-            require(newWord.title.isNotBlank()) { "Title cannot be blank" }
-            require(newWord.meaning.isNotBlank()) { "Meaning cannot be blank" }
+            require(newWord.title.isNotBlank()) { "NO_TITLE" }
+            require(newWord.meaning.isNotBlank()) { "NO_MEANING" }
             word?.let {
                 repo.updateWord(
                     it.id!!, it.copy(

@@ -5,25 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="20dp"
+    android:paddingTop="@dimen/xxl"
     tools:context=".ui.general.WordDetailFragment">
 
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="@dimen/xxxxs" />
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/mtDetails"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:navigationIcon="@drawable/ic_arrow_back"
-        app:title="Word Details"
+        app:title="@string/detail_title"
         app:titleCentered="true" />
 
     <com.google.android.material.divider.MaterialDivider
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="@dimen/xxxxs" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,95 +35,95 @@
             android:id="@+id/mbDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetTop="20dp"
-            android:insetBottom="20dp"
-            android:paddingHorizontal="36dp"
-            android:text="Done"
+            android:insetTop="@dimen/xxl"
+            android:insetBottom="@dimen/xxl"
+            android:paddingHorizontal="@dimen/xxxxxl"
+            android:text="@string/done"
             app:backgroundTint="@color/teal"
-            app:cornerRadius="8dp" />
+            app:cornerRadius="@dimen/xs" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mbUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:insetTop="20dp"
-            android:insetBottom="20dp"
-            android:paddingHorizontal="36dp"
-            android:text="Update"
+            android:layout_marginHorizontal="@dimen/xl"
+            android:insetTop="@dimen/xxl"
+            android:insetBottom="@dimen/xxl"
+            android:paddingHorizontal="@dimen/xxxxxl"
+            android:text="@string/update"
             app:backgroundTint="@color/teal"
-            app:cornerRadius="8dp" />
+            app:cornerRadius="@dimen/xs" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/mbConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:insetTop="20dp"
-            android:insetBottom="20dp"
-            android:paddingHorizontal="36dp"
-            android:text="Delete"
+            android:insetTop="@dimen/xxl"
+            android:insetBottom="@dimen/xxl"
+            android:paddingHorizontal="@dimen/xxxxxl"
+            android:text="@string/delete"
             app:backgroundTint="@color/red"
-            app:cornerRadius="8dp" />
+            app:cornerRadius="@dimen/xs" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingHorizontal="20dp">
+        android:paddingHorizontal="@dimen/xxl">
 
         <TextView
             android:id="@+id/tvTitle"
             style="@style/TextAppearance.Material3.TitleLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Title" />
+            android:layout_marginBottom="@dimen/xl"
+            android:hint="@string/title" />
 
         <TextView
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:hint="Meaning" />
+            android:layout_marginBottom="@dimen/xxxs"
+            android:hint="@string/meaning" />
 
         <TextView
             android:id="@+id/tvMeaning"
             style="@style/TextAppearance.Material3.BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Meaning of word..." />
+            android:layout_marginBottom="@dimen/xl"
+            android:hint="@string/meaning_of_word" />
 
         <TextView
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:hint="Synonym" />
+            android:layout_marginBottom="@dimen/xxxs"
+            android:hint="@string/synonym" />
 
         <TextView
             android:id="@+id/tvSynonym"
             style="@style/TextAppearance.Material3.BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Word Synonyms..." />
+            android:layout_marginBottom="@dimen/xl"
+            android:hint="@string/word_synonyms" />
 
         <TextView
             style="@style/TextAppearance.Material3.TitleMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="4dp"
-            android:hint="Details" />
+            android:layout_marginBottom="@dimen/xxs"
+            android:hint="@string/details" />
 
         <TextView
             android:id="@+id/tvDetails"
             style="@style/TextAppearance.Material3.BodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Details/Usage of Word..." />
+            android:layout_marginBottom="@dimen/xl"
+            android:hint="@string/details_usage_of_word" />
 
     </LinearLayout>
 
