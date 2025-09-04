@@ -2,7 +2,6 @@ package com.fwrdgrp.wordapp.ui.general
 
 import android.app.Dialog
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,7 +18,7 @@ import com.fwrdgrp.wordapp.data.repo.WordsRepo
 import com.fwrdgrp.wordapp.databinding.FragmentWordDetailBinding
 import com.google.android.material.button.MaterialButton
 import androidx.core.graphics.drawable.toDrawable
-import com.fwrdgrp.wordapp.data.models.Status
+import com.fwrdgrp.wordapp.data.enums.Status
 import com.fwrdgrp.wordapp.data.models.Word
 
 
@@ -58,7 +57,7 @@ class WordDetailFragment : Fragment() {
             tvSynonym.text = word.synonym ?: "There are currently no Synonyms for this word"
             tvDetails.text = word.details ?: "There are currently no details available"
             mbDone.setOnClickListener {
-                val dialog = createCompletedDialog(args.wordId)
+                val dialog = createCompletedDialog()
                 dialog.show()
             }
             mbDelete.setOnClickListener {
@@ -89,7 +88,7 @@ class WordDetailFragment : Fragment() {
         setFragmentResult("manage_word", Bundle())
     }
 
-    fun createCompletedDialog(wordId: Int): Dialog{
+    fun createCompletedDialog(): Dialog{
         val dialog = Dialog(requireContext())
         dialog.setContentView(R.layout.confirmation_dialog)
         dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())

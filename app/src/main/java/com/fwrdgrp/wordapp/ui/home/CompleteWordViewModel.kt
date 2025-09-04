@@ -4,6 +4,7 @@ import com.fwrdgrp.wordapp.data.enums.Status
 import kotlinx.coroutines.flow.update
 
 class CompleteWordViewModel : BaseHomeViewModel() {
+
     init {
         getWords()
     }
@@ -11,6 +12,9 @@ class CompleteWordViewModel : BaseHomeViewModel() {
     override fun getWords() {
         _words.update {
             repo.getWords().filter { it.status == Status.COMPLETE }
+                .filter {
+                    currentSearch.isBlank() || it.title.contains(currentSearch, ignoreCase = true)
+                }.applySort(currentSort, currentOrder)
         }
     }
 

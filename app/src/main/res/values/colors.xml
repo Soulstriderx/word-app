@@ -8,4 +8,5 @@
     <color name="beige">#F9F4F4</color>
     <color name="light_gray">#A4A4A4</color>
     <color name="green">#FF00FF00</color>
+    <color name="hint_gray">#ABA6AD</color>
 </resources>
