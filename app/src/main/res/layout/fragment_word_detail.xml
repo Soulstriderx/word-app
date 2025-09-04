@@ -55,7 +55,7 @@
             app:cornerRadius="8dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/mbDelete"
+            android:id="@+id/mbConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:insetTop="20dp"
