@@ -1,21 +1,27 @@
 package com.fwrdgrp.wordapp.ui.home
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.fwrdgrp.wordapp.R
 
-    class HomeFragment : Fragment() {
+class HomeFragment : BaseHomeManageFragment() {
+    override val viewModel: HomeViewModel by viewModels()
 
-        private val viewModel: HomeViewModel by viewModels()
-
-        override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-        ): View {
-            return inflater.inflate(R.layout.fragment_home, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //Button to go to AddWordFragment
+        binding.fabAdd.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeToAddWord()
+            findNavController().navigate(action)
         }
+        binding.tvEmpty.text = getString(R.string.home_empty)
     }
+
+    //Overriden from the dynamic NavDirections function from Base
+    override fun getWordDetailAction(wordId: Int): NavDirections {
+        return HomeFragmentDirections.actionHomeToWordDetail(wordId)
+    }
+}

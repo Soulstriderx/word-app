@@ -25,12 +25,6 @@ class WordsRepo private constructor() {
         map[id] = word
     }
 
-    fun createRandomWords(n: Int) {
-        repeat(n) {
-            map[++counter] = Word(title = "Title $it", meaning = "Meaning $it")
-        }
-    }
-
     companion object {
         private var instance: WordsRepo? = null
 
