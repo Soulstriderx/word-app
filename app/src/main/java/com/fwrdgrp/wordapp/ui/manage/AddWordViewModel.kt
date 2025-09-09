@@ -6,6 +6,7 @@ import kotlinx.coroutines.launch
 
 class AddWordViewModel: BaseManageViewModel() {
 
+    //Submits to repo.
     override fun submit(word: Word) {
         try {
             require(word.title.isNotBlank()) { "NO_TITLE" }

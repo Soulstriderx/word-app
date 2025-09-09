@@ -10,6 +10,7 @@ class WordDetailViewModel(
 ) : ViewModel() {
     private var word: Word? = null
 
+    //Gets word to populate the WordDetail
     fun getWord(id: Int): Word {
         repo.getWordById(id)?.let {
             word = it
@@ -17,6 +18,7 @@ class WordDetailViewModel(
         return this.word ?: throw Exception("Word doesn't exist")
     }
 
+    //Changes Status
     fun changeStatus(word: Word) {
         val newStatus = when (word.status) {
             Status.COMPLETE -> Status.INCOMPLETE
@@ -25,6 +27,7 @@ class WordDetailViewModel(
         repo.updateWord(word.id!!, word.copy(status = newStatus))
     }
 
+    //Delete word
     fun deleteWord(wordId: Int) {
         repo.deleteWord(wordId)
     }
