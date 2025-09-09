@@ -6,9 +6,6 @@ class WordsRepo private constructor() {
     val map = mutableMapOf<Int, Word>()
     var counter = 0
 
-    init {
-        createRandomWords(10)
-    }
     fun add(word: Word) {
         counter++
         map[counter] = word.copy(id = counter)
@@ -26,12 +23,6 @@ class WordsRepo private constructor() {
 
     fun updateWord(id: Int, word: Word) {
         map[id] = word
-    }
-
-    fun createRandomWords(n: Int) {
-        repeat(n) {
-            map[++counter] = Word(title = "Title $it", meaning = "Meaning $it", id = it + 1)
-        }
     }
 
     companion object {
