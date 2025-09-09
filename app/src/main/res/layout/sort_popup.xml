@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginHorizontal="@dimen/xxl"
+    android:clickable="true"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/xxl">
 

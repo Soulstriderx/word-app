@@ -44,8 +44,9 @@ class WordDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         word = viewModel.getWord(args.wordId)
+        //Populate the corresponding fields.
         setData(word)
-
+        //Receives the bundle to trigger a refresh.
         setFragmentResultListener(Constant.MANAGE_EDIT_WORD, { _, _ -> getWord() })
     }
 
@@ -59,7 +60,7 @@ class WordDetailFragment : Fragment() {
         }
         setOnClickListeners()
     }
-
+    //Set the button onClickListeners
     fun setOnClickListeners() {
         binding.run {
             mbDone.text = if (word.status == Status.COMPLETE) getString(R.string.undone)
@@ -78,19 +79,21 @@ class WordDetailFragment : Fragment() {
             }
         }
     }
-
+    //Updates the current word and sets the data again
     fun getWord() {
         val newWord = viewModel.getWord(args.wordId)
         word = newWord
         setData(newWord)
     }
-
+    //Changes whether the word Status is Complete or Incomplete
     fun setStatus() {
         viewModel.changeStatus(word)
         getWord()
         setFragmentResult(Constant.MANAGE_WORD, Bundle())
     }
 
+    //Creates a dialog that inflates an XML, This dynamically changes the Status depending on whether
+    //the word's current status is COMPLETE or INCOMPLETE
     fun createCompletedDialog(): Dialog {
         return Dialog(requireContext()).apply {
             setContentView(R.layout.confirmation_dialog)
@@ -113,6 +116,7 @@ class WordDetailFragment : Fragment() {
         }
     }
 
+    //Creates a dialog for Delete using the same XML as above.
     fun createDeleteDialog(wordId: Int): Dialog {
         return Dialog(requireContext()).apply {
             setContentView(R.layout.confirmation_dialog)

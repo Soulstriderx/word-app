@@ -19,6 +19,7 @@ class EditWordFragment: BaseManageFragment() {
         super.onViewCreated(view, savedInstanceState)
         word = viewModel.getWord(args.wordId)
         binding.run {
+            //Populates the EditText fields
             setText(word)
             mbSubmit.setOnClickListener {
                 viewModel.submit(

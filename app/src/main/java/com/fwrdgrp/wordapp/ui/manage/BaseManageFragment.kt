@@ -30,11 +30,13 @@ abstract class BaseManageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //If it receives a SharedFlow emit of finish, it will popBackStack()
         lifecycleScope.launch {
             viewModel.finish.collect {
                 navigateBack()
             }
         }
+        //If it receives a SharedFlow emit of error, it will show a snackbar
         lifecycleScope.launch {
             viewModel.error.collect {
                 val message = when (it) {
@@ -45,6 +47,7 @@ abstract class BaseManageFragment : Fragment() {
                 showError(message)
             }
         }
+        //The back button on the toolbar. Navigates back
         binding.mtManage.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
@@ -56,6 +59,8 @@ abstract class BaseManageFragment : Fragment() {
     }
 
     fun navigateBack() {
+        //This sends a bundle to both WordDetailFragment and BaseHomeManageFragment to update the
+        // view
         setFragmentResult(Constant.MANAGE_WORD, Bundle())
         setFragmentResult(Constant.MANAGE_EDIT_WORD, Bundle())
         findNavController().popBackStack()

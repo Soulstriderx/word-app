@@ -12,6 +12,7 @@ class HomeFragment : BaseHomeManageFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Button to go to AddWordFragment
         binding.fabAdd.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeToAddWord()
             findNavController().navigate(action)
@@ -19,6 +20,7 @@ class HomeFragment : BaseHomeManageFragment() {
         binding.tvEmpty.text = getString(R.string.home_empty)
     }
 
+    //Overriden from the dynamic NavDirections function from Base
     override fun getWordDetailAction(wordId: Int): NavDirections {
         return HomeFragmentDirections.actionHomeToWordDetail(wordId)
     }

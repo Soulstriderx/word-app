@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
     android:orientation="vertical"
     android:paddingTop="@dimen/xxl"
     tools:context=".ui.general.WordDetailFragment">
@@ -66,65 +67,70 @@
             app:cornerRadius="@dimen/xs" />
     </LinearLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingHorizontal="@dimen/xxl">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvTitle"
-            style="@style/TextAppearance.Material3.TitleLarge"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/xl"
-            android:hint="@string/title" />
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/xxl">
 
-        <TextView
-            style="@style/TextAppearance.Material3.TitleMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/xxxs"
-            android:hint="@string/meaning" />
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/TextAppearance.Material3.TitleLarge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xl"
+                android:hint="@string/title" />
 
-        <TextView
-            android:id="@+id/tvMeaning"
-            style="@style/TextAppearance.Material3.BodyMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/xl"
-            android:hint="@string/meaning_of_word" />
+            <TextView
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xxxs"
+                android:hint="@string/meaning" />
 
-        <TextView
-            style="@style/TextAppearance.Material3.TitleMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/xxxs"
-            android:hint="@string/synonym" />
+            <TextView
+                android:id="@+id/tvMeaning"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xl"
+                android:hint="@string/meaning_of_word" />
 
-        <TextView
-            android:id="@+id/tvSynonym"
-            style="@style/TextAppearance.Material3.BodyMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/xl"
-            android:hint="@string/word_synonyms" />
+            <TextView
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xxxs"
+                android:hint="@string/synonym" />
 
-        <TextView
-            style="@style/TextAppearance.Material3.TitleMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/xxs"
-            android:hint="@string/details" />
+            <TextView
+                android:id="@+id/tvSynonym"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xl"
+                android:hint="@string/word_synonyms" />
 
-        <TextView
-            android:id="@+id/tvDetails"
-            style="@style/TextAppearance.Material3.BodyMedium"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/xl"
-            android:hint="@string/details_usage_of_word" />
+            <TextView
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xxs"
+                android:hint="@string/details" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/tvDetails"
+                style="@style/TextAppearance.Material3.BodyMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/xl"
+                android:hint="@string/details_usage_of_word" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

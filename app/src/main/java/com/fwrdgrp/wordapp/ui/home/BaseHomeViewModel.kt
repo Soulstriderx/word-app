@@ -14,6 +14,7 @@ abstract class BaseHomeViewModel(
     protected val _words = MutableStateFlow<List<Word>>(emptyList())
     val words: StateFlow<List<Word>> = _words
 
+    //Variables used for Sort and Search
     protected var currentSort = SortBy.DATE
     protected var currentOrder = SortOrder.ASCENDING
     protected var currentSearch = ""
@@ -24,17 +25,22 @@ abstract class BaseHomeViewModel(
         getWords()
     }
 
+    //Sets the current search and refreshes the Word list. The filtering is handled in the
+    // respective viewModels
     fun setSearch(str: String) {
         currentSearch = str
         getWords()
     }
 
+    //This sets the sorting variables in the viewModel, received from SortDialogFragment through
+    //a lambda
     fun setSorting(sortBy: SortBy, sortOrder: SortOrder) {
         currentSort = sortBy
         currentOrder = sortOrder
         getWords()
     }
-
+    //Custom method to apply to List<Word> to sort the words according to the currentSort and
+    //currentOrder
     fun List<Word>.applySort(sortBy: SortBy, sortOrder: SortOrder): List<Word> {
         val sort = when (sortBy) {
             SortBy.TITLE -> {
