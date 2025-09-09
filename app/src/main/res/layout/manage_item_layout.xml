@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/mtManage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="Add New Word"
+        app:titleCentered="true">
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/xxl">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:text="@string/title" />
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="start|top"
+            android:hint="@string/title"
+            android:maxLines="1"
+            android:minLines="1"
+            android:overScrollMode="always"
+            android:scrollbars="horizontal"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:text="@string/meaning" />
+
+        <EditText
+            android:id="@+id/etMeaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="start|top"
+            android:hint="@string/meaning"
+            android:maxLines="1"
+            android:minLines="1"
+            android:overScrollMode="always"
+            android:scrollbars="horizontal"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:text="@string/synonym" />
+
+        <EditText
+            android:id="@+id/etSynonyms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="start|top"
+            android:hint="@string/synonym"
+            android:maxLines="1"
+            android:minLines="1"
+            android:overScrollMode="always"
+            android:scrollbars="horizontal"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:text="@string/details" />
+
+        <EditText
+            android:id="@+id/etDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/xl"
+            android:background="@drawable/edit_text_bg"
+            android:gravity="start|top"
+            android:hint="@string/details"
+            android:maxLines="2"
+            android:minLines="2"
+            android:overScrollMode="always"
+            android:scrollbars="vertical" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/mbSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/xxxxxl" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

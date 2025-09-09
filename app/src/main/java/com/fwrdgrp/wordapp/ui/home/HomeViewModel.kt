@@ -1,32 +1,24 @@
 package com.fwrdgrp.wordapp.ui.home
 
-import androidx.lifecycle.ViewModel
-import com.fwrdgrp.wordapp.data.models.Word
-import com.fwrdgrp.wordapp.data.repo.WordsRepo
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import com.fwrdgrp.wordapp.data.enums.Status
 import kotlinx.coroutines.flow.update
 
-class HomeViewModel(
-    private val repo: WordsRepo = WordsRepo.getInstance()
-) : ViewModel() {
-    private val _words = MutableStateFlow<List<Word>>(emptyList())
-    val words: StateFlow<List<Word>> = _words
-
+class HomeViewModel : BaseHomeViewModel() {
     init {
         getWords()
     }
-
-    fun getWords() {
-        _words.update { repo.getWords() }
+    override fun getWords() {
+        _words.update {
+            //CompleteWord filters if the word has been "Not Done"
+            repo.getWords().filter { it.status == Status.INCOMPLETE }
+                .filter {
+                    //This checks for a boolean, if currentSearch is blank, then it does nothing
+                    //If it is not blank, it will filter according to the title, ignoring case
+                    currentSearch.isBlank() || it.title.contains(currentSearch, ignoreCase = true)
+                    //Below is the custom method.
+                }.applySort(currentSort, currentOrder)
+        }
     }
 
-    fun refresh() {
-        getWords()
-    }
 
-    fun deleteWord(word: Word) {
-        repo.deleteWord(word.id!!)
-        refresh()
-    }
 }

@@ -5,58 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
+    android:clickable="true"
     tools:context=".ui.home.HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingVertical="16dp"
-        android:background="@color/white"
-        android:paddingStart="16dp"
-        android:elevation="16dp"
-        android:paddingEnd="8dp">
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_search"
-            android:background="@drawable/search_bar_bg"
-            android:hint="Search"
-            android:layout_weight="1"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginHorizontal="4dp"
-            android:src="@drawable/ic_filter"/>
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvWords"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:clipToPadding="false"
-        android:paddingTop="4dp" />
-
-    <LinearLayout
-        android:id="@+id/llEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:src="@drawable/ic_file" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="You have no Words yet"
-            android:textStyle="bold" />
+            android:background="@color/white"
+            android:elevation="@dimen/xl"
+            android:paddingVertical="@dimen/xl"
+            android:paddingStart="@dimen/xl"
+            android:paddingEnd="@dimen/xs">
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/search_bar_bg"
+                android:drawableStart="@drawable/ic_search"
+                android:hint="@string/search" />
+
+            <ImageView
+                android:id="@+id/ivSort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/xxs"
+                android:src="@drawable/ic_filter" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvWords"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/xxxs"
+            android:paddingBottom="@dimen/recycler_bot_pad" />
+
+        <LinearLayout
+            android:id="@+id/llEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/empty_ic_size"
+                android:layout_height="@dimen/empty_ic_size"
+                android:src="@drawable/ic_file" />
+
+            <TextView
+                android:id="@+id/tvEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/hint_gray"
+                android:textStyle="bold" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -64,9 +77,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Add Word"
+        android:layout_marginEnd="@dimen/xl"
+        android:layout_marginBottom="@dimen/xl"
+        android:text="@string/add_word"
         app:icon="@drawable/ic_add" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

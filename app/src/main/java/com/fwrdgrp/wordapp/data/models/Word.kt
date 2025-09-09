@@ -1,5 +1,6 @@
 package com.fwrdgrp.wordapp.data.models
 
+import com.fwrdgrp.wordapp.data.enums.Status
 import java.util.Date
 
 data class Word(
@@ -11,6 +12,4 @@ data class Word(
     val id: Int? = null,
     val date: Date = Date()
 )
-enum class Status{
-    COMPLETE, INCOMPLETE
-}
+
