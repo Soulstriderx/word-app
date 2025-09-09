@@ -1,38 +1,29 @@
 package com.fwrdgrp.wordapp.data.repo
 
 import com.fwrdgrp.wordapp.data.models.Word
+import com.fwrdgrp.wordapp.database.WordsDao
+import kotlinx.coroutines.flow.Flow
 
-class WordsRepo private constructor() {
-    val map = mutableMapOf<Int, Word>()
-    var counter = 0
-
-    fun add(word: Word) {
-        counter++
-        map[counter] = word.copy(id = counter)
+class WordsRepo(
+    private val dao: WordsDao
+) {
+    fun addWord(product: Word) {
+        dao.addWord(product)
     }
 
-    fun getWordById(id: Int): Word? {
-        return map[id]
+    fun getAllWords(): Flow<List<Word>> {
+        return dao.getAllWords()
     }
 
-    fun getWords() = map.values.toList()
+    suspend fun getWordById(id: Int): Word? {
+        return dao.getWordById(id)
+    }
+
+    fun editWord(product: Word) {
+        dao.update(product)
+    }
 
     fun deleteWord(id: Int) {
-        map.remove(id)
-    }
-
-    fun updateWord(id: Int, word: Word) {
-        map[id] = word
-    }
-
-    companion object {
-        private var instance: WordsRepo? = null
-
-        fun getInstance(): WordsRepo {
-            if (instance == null) {
-                instance = WordsRepo()
-            }
-            return instance!!
-        }
+        dao.delete(id)
     }
 }

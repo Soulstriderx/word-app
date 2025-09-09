@@ -8,7 +8,9 @@ import androidx.navigation.fragment.findNavController
 import com.fwrdgrp.wordapp.R
 
 class HomeFragment : BaseHomeManageFragment() {
-    override val viewModel: HomeViewModel by viewModels()
+    override val viewModel: HomeViewModel by viewModels{
+        HomeViewModel.Factory
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

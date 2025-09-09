@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
@@ -50,8 +49,6 @@ abstract class BaseHomeManageFragment : Fragment() {
                 binding.llEmpty.visibility = if (it.isEmpty()) View.VISIBLE else View.GONE
             }
         }
-        //To receive a bundle and refresh Home and CompleteWords
-        setFragmentResultListener(Constant.MANAGE_WORD) { _, _ -> viewModel.refresh() }
     }
 
     fun setupAdapter() {

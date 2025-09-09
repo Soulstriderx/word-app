@@ -7,7 +7,9 @@ import com.fwrdgrp.wordapp.R
 import com.fwrdgrp.wordapp.data.models.Word
 
 class AddWordFragment : BaseManageFragment() {
-    override val viewModel: AddWordViewModel by viewModels()
+    override val viewModel: AddWordViewModel by viewModels {
+        AddWordViewModel.Factory
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

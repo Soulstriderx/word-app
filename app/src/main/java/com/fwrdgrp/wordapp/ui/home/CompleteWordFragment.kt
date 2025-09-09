@@ -8,7 +8,9 @@ import androidx.navigation.fragment.findNavController
 import com.fwrdgrp.wordapp.R
 
 class CompleteWordFragment : BaseHomeManageFragment() {
-    override val viewModel: CompleteWordViewModel by viewModels()
+    override val viewModel: CompleteWordViewModel by viewModels{
+        CompleteWordViewModel.Factory
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //Button to go to AddWordFragment

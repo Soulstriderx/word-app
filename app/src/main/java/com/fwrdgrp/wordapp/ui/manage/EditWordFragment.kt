@@ -3,33 +3,39 @@ package com.fwrdgrp.wordapp.ui.manage
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.fwrdgrp.wordapp.R
 import com.fwrdgrp.wordapp.data.models.Word
 import com.fwrdgrp.wordapp.ui.general.WordDetailFragmentArgs
+import kotlinx.coroutines.launch
 import kotlin.getValue
 
-class EditWordFragment: BaseManageFragment() {
+class EditWordFragment : BaseManageFragment() {
 
-    override val viewModel: EditWordViewModel by viewModels()
+    override val viewModel: EditWordViewModel by viewModels {
+        EditWordViewModel.Factory
+    }
     private val args: WordDetailFragmentArgs by navArgs()
     private lateinit var word: Word
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        word = viewModel.getWord(args.wordId)
-        binding.run {
-            //Populates the EditText fields
-            setText(word)
-            mbSubmit.setOnClickListener {
-                viewModel.submit(
-                    word.copy(
-                        title = etTitle.text.toString(),
-                        meaning = etMeaning.text.toString(),
-                        synonym = etSynonyms.text.toString(),
-                        details = etDetails.text.toString()
+        lifecycleScope.launch {
+            word = viewModel.getWord(args.wordId)
+            binding.run {
+                //Populates the EditText fields
+                setText(word)
+                mbSubmit.setOnClickListener {
+                    viewModel.submit(
+                        word.copy(
+                            title = etTitle.text.toString(),
+                            meaning = etMeaning.text.toString(),
+                            synonym = etSynonyms.text.toString(),
+                            details = etDetails.text.toString()
+                        )
                     )
-                )
+                }
             }
         }
     }
