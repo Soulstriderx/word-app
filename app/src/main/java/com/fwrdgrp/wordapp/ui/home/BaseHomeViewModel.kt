@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 abstract class BaseHomeViewModel(
-    protected val repo: WordsRepo = WordsRepo.getInstance()
+    protected val repo: WordsRepo
 ) : ViewModel() {
     protected val _words = MutableStateFlow<List<Word>>(emptyList())
     val words: StateFlow<List<Word>> = _words
@@ -20,10 +20,6 @@ abstract class BaseHomeViewModel(
     protected var currentSearch = ""
 
     abstract fun getWords()
-
-    fun refresh() {
-        getWords()
-    }
 
     //Sets the current search and refreshes the Word list. The filtering is handled in the
     // respective viewModels
