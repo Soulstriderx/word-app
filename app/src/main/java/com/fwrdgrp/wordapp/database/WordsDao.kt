@@ -16,10 +16,10 @@ interface WordsDao {
     suspend fun getWordById(id: Int): Word?
 
     @Insert
-    fun addWord(product: Word)
+    fun addWord(word: Word)
 
     @Update
-    fun update(product: Word)
+    fun update(word: Word)
 
     @Query("DELETE FROM word WHERE id = :id")
     fun delete(id: Int)
