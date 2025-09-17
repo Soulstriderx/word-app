@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 
 abstract class BaseManageViewModel(
-    protected val repo: WordsRepo = WordsRepo.getInstance()
+    protected val repo: WordsRepo
 ) : ViewModel() {
     protected val _finish = MutableSharedFlow<Unit>()
     val finish: SharedFlow<Unit> = _finish

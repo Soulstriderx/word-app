@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.fwrdgrp.wordapp.R
-import com.fwrdgrp.wordapp.data.util.Constant
 import com.fwrdgrp.wordapp.databinding.ManageItemLayoutBinding
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -33,7 +31,7 @@ abstract class BaseManageFragment : Fragment() {
         //If it receives a SharedFlow emit of finish, it will popBackStack()
         lifecycleScope.launch {
             viewModel.finish.collect {
-                navigateBack()
+                findNavController().popBackStack()
             }
         }
         //If it receives a SharedFlow emit of error, it will show a snackbar
@@ -56,13 +54,5 @@ abstract class BaseManageFragment : Fragment() {
     fun showError(msg: String) {
         val snackbar = Snackbar.make(binding.root, msg, Snackbar.LENGTH_LONG)
         snackbar.setBackgroundTint(ContextCompat.getColor(requireContext(), R.color.red)).show()
-    }
-
-    fun navigateBack() {
-        //This sends a bundle to both WordDetailFragment and BaseHomeManageFragment to update the
-        // view
-        setFragmentResult(Constant.MANAGE_WORD, Bundle())
-        setFragmentResult(Constant.MANAGE_EDIT_WORD, Bundle())
-        findNavController().popBackStack()
     }
 }
